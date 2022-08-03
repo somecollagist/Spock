@@ -16,10 +16,6 @@ namespace Spock
 		/// The gate's unique identifier.
 		/// </summary>
 		public Guid ID { get; init; } = Guid.NewGuid();
-		/// <summary>
-		/// If set to true, this gate will be used as a startpoint for the circuit.
-		/// </summary>
-		public bool IsInputGate { get; init; }
 
 		/// <summary>
 		/// The inputs of the logic gate.

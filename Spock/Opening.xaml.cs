@@ -26,22 +26,28 @@ namespace Spock
 		{
 			InitializeComponent();
 
-			Switch alpha = new(true) { IsInputGate = true };
-			Switch beta = new(true) { IsInputGate = false };
-			AND gate = new();
-			Bulb output = new();
+			Switch alpha = new(true);
+			Switch beta = new(false);
+			Switch gamma = new(true);
 
-			Connection alpha_and = new(alpha, gate, 0, 0);
-			Connection beta_and = new(beta, gate, 0, 1);
-			Connection light = new(gate, output, 0, 0);
+			OR gate1 = new();
+			AND gate2 = new();
 
-			alpha_and.Transmit();
-			beta_and.Transmit();
-			light.Transmit();
+			Bulb bulb1 = new();
+			Bulb bulb2 = new();
+
+			Connection c1 = new(alpha, gate1, 0, 0);
+			Connection c2 = new(beta, gate1, 0, 1);
+			Connection c3 = new(gate1, gate2, 0, 0);
+			Connection c4 = new(gamma, gate2, 0, 1);
+
+			Connection b1 = new(gate1, bulb1, 0, 0);
+			Connection b2 = new(gate2, bulb2, 0, 0);
 
 			Circuit.Run();
 
-			Console.Write(output.State);
+			Console.Write(bulb1.State);
+			Console.Write(bulb2.State);
 		}
 	}
 }
