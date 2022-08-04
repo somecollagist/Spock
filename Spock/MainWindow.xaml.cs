@@ -13,8 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using static Spock.STDLib;
-
 namespace Spock
 {
 	/// <summary>
@@ -26,28 +24,16 @@ namespace Spock
 		{
 			InitializeComponent();
 
-			Switch alpha = new(true);
-			Switch beta = new(false);
-			Switch gamma = new(true);
+			StyleProperty.OverrideMetadata(typeof(Window), new FrameworkPropertyMetadata
+			{
+				DefaultValue = FindResource(typeof(Window))
+			});
+		}
 
-			OR gate1 = new();
-			AND gate2 = new();
-
-			Bulb bulb1 = new();
-			Bulb bulb2 = new();
-
-			Connection c1 = new(alpha, gate1, 0, 0);
-			Connection c2 = new(beta, gate1, 0, 1);
-			Connection c3 = new(gate1, gate2, 0, 0);
-			Connection c4 = new(gamma, gate2, 0, 1);
-
-			Connection b1 = new(gate1, bulb1, 0, 0);
-			Connection b2 = new(gate2, bulb2, 0, 0);
-
-			Circuit.Run();
-
-			Console.Write(bulb1.State);
-			Console.Write(bulb2.State);
+		public void SettingsClicked(object sender, RoutedEventArgs e)
+		{
+			Settings settings = new();
+			settings.Show();
 		}
 	}
 }

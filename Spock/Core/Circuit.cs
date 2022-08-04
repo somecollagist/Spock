@@ -26,33 +26,6 @@ namespace Spock
 			}
 		}
 
-		//public static void Run()
-		//{
-		//	List<Guid> next_nodes =
-		//		Components.Values
-		//		.Where(t => t.IsInputGate)
-		//		.Select(t => t.ID).ToList();
-
-		//	while(next_nodes.Count > 0)
-		//	{
-		//		List<Guid> run_nodes = next_nodes;
-		//		next_nodes = new();
-
-		//		foreach(Guid g in run_nodes)
-		//		{
-		//			Component c = Components[g];
-		//			c.Function();
-		//			foreach(Connection x in c._outputConnections)
-		//			{
-		//				if (!next_nodes.Contains(x.Target)) next_nodes.Add(x.Target);
-		//				x.Transmit();
-		//			}
-		//		}
-		//	}
-
-		//	Console.WriteLine("Done!");
-		//}
-
 		public static void Run()
 		{
 			List<Guid> end_nodes =

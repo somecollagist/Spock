@@ -1,0 +1,110 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:local="clr-namespace:Spock"
+					x:Class="Spock.Style">
+	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="Dark.xaml"/>
+	</ResourceDictionary.MergedDictionaries>
+
+	<Style x:Key="WindowStyle" TargetType="Window">
+		<Setter Property="WindowStyle" Value="None"/>
+		<Setter Property="AllowsTransparency" Value="True"/>
+		<Setter Property="WindowChrome.WindowChrome">
+			<Setter.Value>
+				<WindowChrome
+					CaptionHeight="36"/>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Window}">
+					<Grid
+						Background="{DynamicResource BackgroundDim}"
+						VerticalAlignment="Top">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="35"/>
+							<RowDefinition/>
+						</Grid.RowDefinitions>
+						<StackPanel
+							WindowChrome.IsHitTestVisibleInChrome="True"
+							Grid.Row="0" Height="36"
+							Orientation="Horizontal"
+							HorizontalAlignment="Right" VerticalAlignment="Center">
+							<Button
+								x:Name="MinimiseButton" Content="_"
+								Width="35"
+								Click="MinimiseClicked"/>
+							<Button
+								x:Name="MaxmimiseButton" Content="□"
+								Width="35"
+								Click="MaximiseClicked"/>
+							<Button
+								x:Name="CloseButton" Content="×"
+								Width="35"
+								Click="CloseClicked"/>
+						</StackPanel>
+						<ContentPresenter
+							Grid.Row="1"
+							Content="{TemplateBinding Content}"
+							ContentTemplate="{TemplateBinding ContentTemplate}"/>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style TargetType="Grid">
+		<Setter Property="Background" Value="{DynamicResource Background}"/>
+	</Style>
+	
+	<Style TargetType="Label">
+		<Setter Property="Foreground" Value="{DynamicResource Foreground}"/>
+		<Setter Property="FontFamily" Value="Consolas"/>
+	</Style>
+
+	<Style TargetType="Button">
+		<Setter Property="Foreground" Value="{DynamicResource Foreground}"/>
+		<Setter Property="Background" Value="{DynamicResource BackgroundDim}"/>
+		<Setter Property="FontFamily" Value="Consolas"/>
+		<Setter Property="BorderThickness" Value="1"/>
+		<Setter Property="Padding" Value="10,2"/>
+		<Setter Property="Margin" Value="2.5,5,2.5,5" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="Button">
+					<Grid>
+						<Border
+							x:Name="border"
+							BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+							Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+							<TextBlock
+								x:Name="ContentPresenter"
+								Foreground="{TemplateBinding Foreground}"
+								Text="{TemplateBinding Content}"
+								HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						</Border>
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsDefaulted" Value="True">
+							<Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource Border}" />
+						</Trigger>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Background" TargetName="border" Value="{DynamicResource Accent}" />
+							<Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource Border}" />
+						</Trigger>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter Property="Background" TargetName="border" Value="{DynamicResource AccentDim}" />
+							<Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource Border}" />
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter Property="Background" TargetName="border" Value="{DynamicResource Disabled}" />
+							<Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource Border}" />
+							<Setter Property="TextElement.Foreground" TargetName="ContentPresenter" Value="{DynamicResource ForegroundDim}" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+</ResourceDictionary>
