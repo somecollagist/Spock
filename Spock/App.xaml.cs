@@ -13,5 +13,7 @@ namespace Spock
 	/// </summary>
 	public partial class App : Application
 	{
+		public static MainWindow CurrentWindow = (MainWindow)Current.MainWindow;
+		public static App CurrentApp = (App)Current;
 	}
 }

@@ -10,18 +10,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Spock
+namespace Spock.Pages
 {
 	/// <summary>
-	/// Interaction logic for Settings.xaml
+	/// Interaction logic for Home.xaml
 	/// </summary>
-	public partial class Settings : Window
+	public partial class Home : Page
 	{
-		public Settings()
+		public Home()
 		{
 			InitializeComponent();
+		}
+
+		public void SettingsClicked(object sender, RoutedEventArgs e)
+		{
+			App.CurrentApp.SwitchPage(new Uri("Pages/Settings.xaml", UriKind.Relative));
 		}
 	}
 }

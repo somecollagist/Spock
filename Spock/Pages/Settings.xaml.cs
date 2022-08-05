@@ -13,30 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Spock
+namespace Spock.Pages
 {
 	/// <summary>
-	/// Interaction logic for MainWindow.xaml
+	/// Interaction logic for Settings.xaml
 	/// </summary>
-	public partial class MainWindow : Window
+	public partial class Settings : Page
 	{
-		public MainWindow()
+		public Settings()
 		{
 			InitializeComponent();
-
-			StyleProperty.OverrideMetadata(typeof(Window), new FrameworkPropertyMetadata
-			{
-				DefaultValue = FindResource(typeof(Window))
-			});
-			App.CurrentApp.SetStyle(App.Styles.Light);
-		}
-	}
-
-	public partial class App : Application
-	{
-		public void SwitchPage(Uri uri)
-		{
-			CurrentWindow.Frame.Source = uri;
 		}
 	}
 }
