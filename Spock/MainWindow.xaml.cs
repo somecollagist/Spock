@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,7 +29,10 @@ namespace Spock
 			{
 				DefaultValue = FindResource(typeof(Window))
 			});
-			App.CurrentApp.SetStyle(App.Styles.Light);
+
+			App.CurrentApp.SetStyle(
+				(App.Styles)Properties.Settings.Default.Theme
+			);
 		}
 	}
 

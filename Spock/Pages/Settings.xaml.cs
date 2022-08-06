@@ -24,5 +24,32 @@ namespace Spock.Pages
 		{
 			InitializeComponent();
 		}
+
+		public void ReturnToHomeClicked(object sender, RoutedEventArgs e)
+		{
+			App.CurrentApp.SwitchPage(new Uri("Pages/Home.xaml", UriKind.Relative));
+			Properties.Settings.Default.Save();
+		}
+
+		public void ThemeClicked(object sender, RoutedEventArgs e)
+		{
+			App.Styles style;
+			switch((string)(((RadioButton)sender).Content))
+			{
+				case "Light":
+					style = App.Styles.Light;
+					break;
+
+				case "Dark":
+					style = App.Styles.Dark;
+					break;
+
+				default:
+					style = App.Styles.System;
+					break;
+			}
+			App.CurrentApp.SetStyle(style);
+			Properties.Settings.Default.Theme = (short)style;
+		}
 	}
 }

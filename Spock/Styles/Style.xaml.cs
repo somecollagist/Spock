@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -53,19 +54,14 @@ namespace Spock
 		[DllImport("UXTheme.dll", SetLastError = true, EntryPoint = "#138")]
 		private static extern bool ShouldSystemUseDarkMode();
 
-		private ResourceDictionary Theme
-		{
-			get { return Resources.MergedDictionaries[0]; }
-		}
-
 		public void SetStyle(Styles style)
 		{
 			CurrentStyle = style;
-			Theme.MergedDictionaries.Clear();
+			Resources.MergedDictionaries.RemoveAt(1);
 			switch (style)
 			{
 				case Styles.System:
-					Theme.MergedDictionaries.Add(new ResourceDictionary()
+					Resources.MergedDictionaries.Add(new ResourceDictionary()
 					{
 						Source = new Uri(ShouldSystemUseDarkMode() ?
 						"pack://application:,,,/Styles/Dark.xaml" :
@@ -74,11 +70,11 @@ namespace Spock
 					break;
 
 				case Styles.Light:
-					Theme.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("pack://application:,,,/Styles/Light.xaml") });
+					Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("pack://application:,,,/Styles/Light.xaml") });
 					break;
 
 				case Styles.Dark:
-					Theme.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("pack://application:,,,/Styles/Dark.xaml") });
+					Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("pack://application:,,,/Styles/Dark.xaml") });
 					break;
 			}
 		}

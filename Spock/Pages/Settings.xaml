@@ -19,6 +19,15 @@
 			<RowDefinition Height="10*"/>
 		</Grid.RowDefinitions>
 		<Viewbox
+			Grid.Column="0"
+			Grid.Row="0">
+			<Button
+				Content="⌂"
+				Height="24" Width="24"
+				HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+				Click="ReturnToHomeClicked"/>
+		</Viewbox>
+		<Viewbox
 			Grid.Column="1"
 			Grid.Row="0">
 			<Label
@@ -41,32 +50,23 @@
 					<Label
 						Grid.Column="0"
 						Content="Theme"/>
-					<ComboBox
+					<StackPanel
+						Orientation="Vertical"
 						Grid.Column="2">
-
-					</ComboBox>
+						<RadioButton
+							x:Name="ThemeSystemDefault"
+							Content="System Default"
+							Click="ThemeClicked"/>
+						<RadioButton
+							x:Name="ThemeLight"
+							Content="Light"
+							Click="ThemeClicked"/>
+						<RadioButton
+							x:Name="ThemeDark"
+							Content="Dark"
+							Click="ThemeClicked"/>
+					</StackPanel>
 				</Grid>
-				<Label>Content</Label>
-				<Label>Content</Label>
-				<Label>Content</Label>
-				<Label>Content</Label>
-				<Label>Content</Label>
-				<Label>Content</Label>
-				<Label>Content</Label>
-				<Label>Content</Label>
-				<Label>Content</Label>
-				<Label>Content</Label>
-				<Label>Content</Label>
-				<Label>Content</Label>
-				<Label>Content</Label>
-				<Label>Content</Label>
-				<Label>Content</Label>
-				<Label>Content</Label>
-				<Label>Content</Label>
-				<Label>Content</Label>
-				<Label>Content</Label>
-				<Label>Content</Label>
-				<Label>Content</Label>
 			</StackPanel>
 		</ScrollViewer>
 
