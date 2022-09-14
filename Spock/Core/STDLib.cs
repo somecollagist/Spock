@@ -95,6 +95,9 @@ namespace Spock
 			}
 		}
 
+		/// <summary>
+		/// A bulb, which only has an output.
+		/// </summary>
 		internal class Bulb : Component
 		{
 			public bool State { get; internal set; }

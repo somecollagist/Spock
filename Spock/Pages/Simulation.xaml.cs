@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,28 +17,20 @@ using System.Windows.Shapes;
 namespace Spock.Pages
 {
 	/// <summary>
-	/// Interaction logic for Home.xaml
+	/// Interaction logic for Simulation.xaml
 	/// </summary>
-	public partial class Home : Page
+	public partial class Simulation : Page
 	{
-		public Home()
+		public Simulation()
 		{
 			InitializeComponent();
 		}
 
-		public void NewSimulationClicked(object sender, RoutedEventArgs e)
+		internal Stream ActiveFile { get; private set; } = Stream.Null;
+
+		public void LoadActiveFile(string FileName)
 		{
-
-		}
-
-		public void LoadSimualtionClicked(object sender, RoutedEventArgs e)
-		{
-
-		}
-
-		public void SettingsClicked(object sender, RoutedEventArgs e)
-		{
-			App.CurrentApp.SwitchPage(new Uri("Pages/Settings.xaml", UriKind.Relative));
+			ActiveFile = File.OpenRead(FileName);
 		}
 	}
 }

@@ -60,9 +60,11 @@
 			Grid.Row="2">
 			<StackPanel>
 				<Button
-					Content="New Simulation"/>
+					Content="New Simulation"
+					Click="NewSimualtionClicked"/>
 				<Button
-					Content="Load Simulation"/>
+					Content="Load Simulation"
+					Click="LoadSimualtionClicked"/>
 				<Button
 					Content="Settings"
 					Click="SettingsClicked"/>

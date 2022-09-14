@@ -23,6 +23,21 @@ namespace Spock.Pages
 		public Settings()
 		{
 			InitializeComponent();
+
+			switch(App.CurrentApp.CurrentStyle)
+			{
+				case App.Styles.System:
+					ThemeSystemDefault.IsChecked = true;
+					break;
+
+				case App.Styles.Light:
+					ThemeLight.IsChecked = true;
+					break;
+
+				case App.Styles.Dark:
+					ThemeDark.IsChecked = true;
+					break;
+			}
 		}
 
 		public void ReturnToHomeClicked(object sender, RoutedEventArgs e)
