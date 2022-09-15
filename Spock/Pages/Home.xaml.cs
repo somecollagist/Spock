@@ -30,7 +30,7 @@ namespace Spock.Pages
 
 		}
 
-		public void LoadSimualtionClicked(object sender, RoutedEventArgs e)
+		public void LoadSimulationClicked(object sender, RoutedEventArgs e)
 		{
 
 		}
