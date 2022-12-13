@@ -7,8 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="30">
     <Grid Background="Transparent">
-		<Path Data="M 22.32,15 L 5,25 5,5 Z"
-			  Stroke="{DynamicResource Foreground}"/>
+		<Path Data="M 22.32,15 L 5,25 5,5 Z"/>
 		<Label FontSize="6"
 			   Margin="2,6.5,0,0">BUF</Label>
 	</Grid>

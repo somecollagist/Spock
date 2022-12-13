@@ -7,10 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="30">
     <Grid Background="Transparent">
-		<Path Data="M 5,5 C 5,5 15,15 5,25  5,25 20,22 25,15  25,15 20,8 5,5 Z"
-			  Stroke="{DynamicResource Foreground}"/>
-		<Path Data="M 2,5 C 2,5 12,15 2,25"
-			  Stroke="{DynamicResource Foreground}"/>
+		<Path Data="M 5,5 C 5,5 15,15 5,25  5,25 20,22 25,15  25,15 20,8 5,5 Z"/>
+		<Path Data="M 2,5 C 2,5 12,15 2,25"/>
 		<Label FontSize="6"
 			   Margin="6,6.5,0,0">XOR</Label>
 	</Grid>

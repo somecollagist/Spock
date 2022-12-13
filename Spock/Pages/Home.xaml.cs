@@ -27,7 +27,7 @@ namespace Spock.Pages
 
 		public void NewSimulationClicked(object sender, RoutedEventArgs e)
 		{
-
+			App.CurrentApp.SwitchPage(new Uri("Pages/Simulation.xaml", UriKind.Relative));
 		}
 
 		public void LoadSimulationClicked(object sender, RoutedEventArgs e)

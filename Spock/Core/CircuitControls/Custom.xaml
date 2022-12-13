@@ -7,8 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="30">
     <Grid Background="Transparent">
-		<Path Data="M 5,5 L 25,5 25,25 5,25 Z"
-			  Stroke="{DynamicResource Foreground}"/>
+		<Path Data="M 5,5 L 25,5 25,25 5,25 Z"/>
 		<Label x:Name="CustomLabel"
 			   FontSize="6"
 			   Margin="2,6.5,0,0"/>

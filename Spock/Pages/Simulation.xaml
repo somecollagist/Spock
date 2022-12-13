@@ -4,11 +4,23 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Spock.Pages"
+	  xmlns:customs="clr-namespace:Spock.Core.CircuitControls"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Simulation">
 
-    <Grid>
-        
-    </Grid>
+    <Grid x:Name="SimulationGrid">
+		<ListView x:Name="Draglist"
+				  Width="42"
+				  Margin="20"
+				  HorizontalAlignment="Left"
+				  PreviewMouseLeftButtonDown="List_PreviewMouseLeftButtonDown"
+				  PreviewMouseMove="List_MouseMove">
+		</ListView>
+		<ListView x:Name="Workspace"
+					Margin="70"
+					Drop="Workspace_Drop" 
+					DragEnter="Workspace_DragEnter" 
+					AllowDrop="True" />
+	</Grid>
 </Page>

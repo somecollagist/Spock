@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace Spock
 {
-	abstract internal class Component
+	abstract internal class Component : UserControl
 	{
 		/// <summary>
 		/// The function performed by the gate.

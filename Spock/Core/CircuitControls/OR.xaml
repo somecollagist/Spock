@@ -7,8 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="30">
     <Grid Background="Transparent">
-		<Path Data="M 5,5 C 5,5 15,15 5,25  5,25 20,22 25,15  25,15 20,8 5,5 Z"
-			  Stroke="{DynamicResource Foreground}"/>
+		<!-- All the ladies are undoubtedly attracted to my sick bezier curves -->
+		<Path Data="M 5,5 C 5,5 15,15 5,25  5,25 20,22 25,15  25,15 20,8 5,5 Z"/>
 		<Label FontSize="6"
 			   Margin="6,6.5,0,0">OR</Label>
 	</Grid>

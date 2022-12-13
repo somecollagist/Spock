@@ -7,8 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="30">
     <Grid Background="Transparent">
-		<Path Data="M 5,5 L 15,5 A 5,5,90,0,1,15,25 L 5,25 Z"
-			  Stroke="{DynamicResource Foreground}"/>
+		<Path Data="M 5,5 L 15,5 A 5,5,90,0,1,15,25 L 5,25 Z"/>
 		<Label FontSize="6"
 			   Margin="2,6.5,0,0">AND</Label>
 	</Grid>
