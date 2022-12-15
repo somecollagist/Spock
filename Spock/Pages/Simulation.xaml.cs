@@ -45,28 +45,37 @@ namespace Spock.Pages
 			ActiveFile = File.OpenRead(FileName);
 		}
 
-		Point StartPoint;
-		Point EndPoint;
+#pragma warning disable CS8600
+#pragma warning disable CS8602
+#pragma warning disable CS8603
 
+		Point StartPoint;
 		private void List_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
 			StartPoint = e.GetPosition(null);
 		}
 
-		private void List_MouseMove(object sender, MouseEventArgs e)
+		private void List_PreviewMouseMove(object sender, MouseEventArgs e)
 		{
-			Point mousePos = e.GetPosition(null);
-			Vector diff = StartPoint - mousePos;
-
-			if(e.LeftButton == MouseButtonState.Pressed &&
-				Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance ||
-				Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance)
+			try
 			{
-				ListView listView = sender as ListView;
-				ListViewItem listViewItem = FindAnchestor<ListViewItem>((DependencyObject)e.OriginalSource);
-				UserControl component = (UserControl)listView.ItemContainerGenerator.ItemFromContainer(listViewItem);
-				DataObject dragData = new DataObject("myformat", component);
-				DragDrop.DoDragDrop(listViewItem, dragData, DragDropEffects.Move);
+				Point mousePos = e.GetPosition(null);
+				Vector diff = StartPoint - mousePos;
+
+				if (e.LeftButton == MouseButtonState.Pressed &&
+					(Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance ||
+					Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance))
+					{
+						ListView listView = sender as ListView;
+						ListViewItem listViewItem = FindAnchestor<ListViewItem>((DependencyObject)e.OriginalSource);
+						UserControl component = (UserControl)listView.ItemContainerGenerator.ItemFromContainer(listViewItem);
+						DataObject dragData = new DataObject("myformat", component);
+						DragDrop.DoDragDrop(listViewItem, dragData, DragDropEffects.Move);
+					}
+			}
+			catch (ArgumentNullException)
+			{
+				// Likely caused by an invalid drag - not enough to crash over
 			}
 		}
 
@@ -74,7 +83,7 @@ namespace Spock.Pages
 		{
 			do
 			{
-				if (current is T)
+				if (current is T || current.GetType().IsSubclassOf(typeof(T)))
 				{
 					return (T)current;
 				}
@@ -88,9 +97,18 @@ namespace Spock.Pages
 			if (e.Data.GetDataPresent("myformat"))
 			{
 				UserControl component = e.Data.GetData("myformat") as UserControl;
-				ListView listView = sender as ListView;
-				Draglist.Items.Remove(component);
-				listView.Items.Add(component);
+				Canvas canvas = sender as Canvas;
+				UserControl ctrl = component.GetType().Name switch
+				{
+					"BUF"	=> new Spock.Core.CircuitControls.BUF(),
+					"NOT"	=> new Spock.Core.CircuitControls.NOT(),
+					"AND"	=> new Spock.Core.CircuitControls.AND(),
+					"OR"	=> new Spock.Core.CircuitControls.OR(),
+					"XOR"	=> new Spock.Core.CircuitControls.XOR(),
+					_		=> throw new Exception("?!")
+				};
+				ctrl.Margin = new Thickness(e.GetPosition(Workspace).X, e.GetPosition(Workspace).Y, 0, 0);
+				canvas.Children.Add(ctrl);
 			}
 		}
 

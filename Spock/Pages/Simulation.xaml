@@ -15,12 +15,12 @@
 				  Margin="20"
 				  HorizontalAlignment="Left"
 				  PreviewMouseLeftButtonDown="List_PreviewMouseLeftButtonDown"
-				  PreviewMouseMove="List_MouseMove">
-		</ListView>
-		<ListView x:Name="Workspace"
-					Margin="70"
-					Drop="Workspace_Drop" 
-					DragEnter="Workspace_DragEnter" 
-					AllowDrop="True" />
+				  PreviewMouseMove="List_PreviewMouseMove"/>
+		<Canvas	x:Name="Workspace"
+				Margin="70"
+				Background="{DynamicResource BackgroundDim}"
+				Drop="Workspace_Drop" 
+				DragEnter="Workspace_DragEnter" 
+				AllowDrop="True"/>
 	</Grid>
 </Page>

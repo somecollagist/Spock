@@ -39,7 +39,7 @@
 						VerticalAlignment="Top">
 						<Grid.RowDefinitions>
 							<RowDefinition Height="36"/>
-							<RowDefinition/>
+							<RowDefinition Height="450"/>
 						</Grid.RowDefinitions>
 						<StackPanel
 							WindowChrome.IsHitTestVisibleInChrome="True"
@@ -50,10 +50,10 @@
 								x:Name="MinimiseButton" Content="-"
 								Style="{DynamicResource WindowButton}"
 								Click="MinimiseClicked"/>
-							<Button
+							<!--<Button
 								x:Name="MaxmimiseButton" Content="□"
 								Style="{DynamicResource WindowButton}"
-								Click="MaximiseClicked"/>
+								Click="MaximiseClicked"/>-->
 							<Button
 								x:Name="CloseButton" Content="×"
 								Style="{DynamicResource WindowButton}"
@@ -61,7 +61,7 @@
 						</StackPanel>
 						<ContentPresenter
 							Width="{TemplateBinding Width}"
-							Grid.Row="1" Height="{TemplateBinding Height}"
+							Grid.Row="1" Height="450"
 							Content="{TemplateBinding Content}"
 							ContentTemplate="{TemplateBinding ContentTemplate}"/>
 					</Grid>

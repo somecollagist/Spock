@@ -18,7 +18,7 @@ namespace Spock.Core.CircuitControls
 	/// <summary>
 	/// Interaction logic for BUF.xaml
 	/// </summary>
-	public partial class BUF : UserControl
+	public partial class BUF : Control
 	{
 		public BUF()
 		{

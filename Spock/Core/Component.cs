@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Spock
 {
@@ -62,6 +63,11 @@ namespace Spock
 			_inputConnections = new Connection[Inputs];
 			_outputConnections = new Connection[Outputs];
 			Circuit.RegisterComponent(this);
+		}
+
+		protected void Component_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			Console.WriteLine("Acc");
 		}
 	}
 }
