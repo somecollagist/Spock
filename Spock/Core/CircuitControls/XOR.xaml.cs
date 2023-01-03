@@ -18,11 +18,12 @@ namespace Spock.Core.CircuitControls
 	/// <summary>
 	/// Interaction logic for XOR.xaml
 	/// </summary>
-	public partial class XOR : UserControl
+	public partial class XOR : Component
 	{
 		public XOR()
 		{
 			InitializeComponent();
+			Fn = () => Inputs[0].Fn() ^ Inputs[1].Fn();
 		}
 	}
 }

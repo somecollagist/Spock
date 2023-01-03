@@ -31,7 +31,8 @@ namespace Spock.Pages
 				new Core.CircuitControls.NOT(),
 				new Core.CircuitControls.AND(),
 				new Core.CircuitControls.OR(),
-				new Core.CircuitControls.XOR()
+				new Core.CircuitControls.XOR(),
+				new Core.CircuitControls.Switch()
 			})
 			{
 				Draglist.Items.Add(c);
@@ -100,12 +101,13 @@ namespace Spock.Pages
 				Canvas canvas = sender as Canvas;
 				UserControl ctrl = component.GetType().Name switch
 				{
-					"BUF"	=> new Spock.Core.CircuitControls.BUF(),
-					"NOT"	=> new Spock.Core.CircuitControls.NOT(),
-					"AND"	=> new Spock.Core.CircuitControls.AND(),
-					"OR"	=> new Spock.Core.CircuitControls.OR(),
-					"XOR"	=> new Spock.Core.CircuitControls.XOR(),
-					_		=> throw new Exception("?!")
+					"BUF"		=> new Spock.Core.CircuitControls.BUF(),
+					"NOT"		=> new Spock.Core.CircuitControls.NOT(),
+					"AND"		=> new Spock.Core.CircuitControls.AND(),
+					"OR"		=> new Spock.Core.CircuitControls.OR(),
+					"XOR"		=> new Spock.Core.CircuitControls.XOR(),
+					"Switch"	=> new Spock.Core.CircuitControls.Switch(),
+					_			=> throw new Exception("?!")
 				};
 				ctrl.Margin = new Thickness(e.GetPosition(Workspace).X, e.GetPosition(Workspace).Y, 0, 0);
 				canvas.Children.Add(ctrl);

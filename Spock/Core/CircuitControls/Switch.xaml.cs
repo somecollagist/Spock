@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Spock.Core.CircuitControls
 {
 	/// <summary>
-	/// Interaction logic for Custom.xaml
+	/// Interaction logic for Switch.xaml
 	/// </summary>
-	public partial class Custom : UserControl
+	public partial class Switch : Component
 	{
-		public Custom()
+		public Switch()
 		{
 			InitializeComponent();
 		}

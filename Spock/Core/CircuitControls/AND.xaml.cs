@@ -18,11 +18,12 @@ namespace Spock.Core.CircuitControls
 	/// <summary>
 	/// Interaction logic for AND.xaml
 	/// </summary>
-	public partial class AND : UserControl
+	public partial class AND : Component
 	{
 		public AND()
 		{
 			InitializeComponent();
+			Fn = () => Inputs[0].Fn() && Inputs[1].Fn();
 		}
 	}
 }

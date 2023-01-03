@@ -18,11 +18,12 @@ namespace Spock.Core.CircuitControls
 	/// <summary>
 	/// Interaction logic for OR.xaml
 	/// </summary>
-	public partial class OR : UserControl
+	public partial class OR : Component
 	{
 		public OR()
 		{
 			InitializeComponent();
+			Fn = () => Inputs[0].Fn() || Inputs[1].Fn();
 		}
 	}
 }

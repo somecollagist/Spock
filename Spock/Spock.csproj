@@ -36,9 +36,6 @@
     <Compile Update="Core\CircuitControls\XOR.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Core\CircuitControls\Custom.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Properties\Settings.Designer.cs">
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>
@@ -67,10 +64,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Core\CircuitControls\XOR.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Core\CircuitControls\Custom.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>

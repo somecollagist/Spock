@@ -18,11 +18,12 @@ namespace Spock.Core.CircuitControls
 	/// <summary>
 	/// Interaction logic for NOT.xaml
 	/// </summary>
-	public partial class NOT : UserControl
+	public partial class NOT : Component
 	{
 		public NOT()
 		{
 			InitializeComponent();
+			Fn = () => !Inputs[0].Fn();
 		}
 	}
 }

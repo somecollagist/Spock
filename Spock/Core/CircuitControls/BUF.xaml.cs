@@ -18,11 +18,12 @@ namespace Spock.Core.CircuitControls
 	/// <summary>
 	/// Interaction logic for BUF.xaml
 	/// </summary>
-	public partial class BUF : Control
+	public partial class BUF : Component
 	{
 		public BUF()
 		{
 			InitializeComponent();
+			Fn = () => Inputs[0].Fn();
 		}
 	}
 }

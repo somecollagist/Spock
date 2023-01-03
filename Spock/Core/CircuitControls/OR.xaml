@@ -1,15 +1,15 @@
-﻿<UserControl x:Class="Spock.Core.CircuitControls.OR"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Spock.Core.CircuitControls"
-             mc:Ignorable="d" 
-             d:DesignHeight="30" d:DesignWidth="30">
-    <Grid Background="Transparent">
+﻿<local:Component x:Class="Spock.Core.CircuitControls.OR"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:local="clr-namespace:Spock.Core.CircuitControls"
+			 mc:Ignorable="d" 
+			 d:DesignHeight="30" d:DesignWidth="30">
+	<Grid Background="Transparent">
 		<!-- All the ladies are undoubtedly attracted to my sick bezier curves -->
 		<Path Data="M 5,5 C 5,5 15,15 5,25  5,25 20,22 25,15  25,15 20,8 5,5 Z"/>
 		<Label FontSize="6"
 			   Margin="6,6.5,0,0">OR</Label>
 	</Grid>
-</UserControl>
+</local:Component>
