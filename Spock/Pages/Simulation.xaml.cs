@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Spock.Core;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -120,6 +121,12 @@ namespace Spock.Pages
 			{
 				e.Effects = DragDropEffects.None;
 			}
+		}
+
+		private void Simplify_Click(object sender, RoutedEventArgs e)
+		{
+			Token t = Solver.Solve("ABC(DEF)GHI");
+			return;
 		}
 	}
 }

@@ -9,7 +9,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Simulation">
 
-    <Grid x:Name="SimulationGrid">
+	<Grid x:Name="SimulationGrid">
 		<ListView x:Name="Draglist"
 				  Width="42"
 				  Margin="20"
@@ -22,5 +22,16 @@
 				Drop="Workspace_Drop" 
 				DragEnter="Workspace_DragEnter" 
 				AllowDrop="True"/>
+		<Button x:Name="Simplify"
+				Content="Simplify"
+				Margin="70,385,610,20"
+				Click="Simplify_Click"/>
+		<Label x:Name="Expression"
+			   Content="(A&amp;B)|C"
+			   Height="45"
+			   VerticalContentAlignment="Center"
+			   Background="#10FFFFFF"
+			   Margin="195,385,70,20"
+			/>
 	</Grid>
 </Page>
