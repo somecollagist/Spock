@@ -1,4 +1,5 @@
 ﻿using Spock.Core;
+using Spock.Core.CircuitControls;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Windows.Web.AtomPub;
 
 namespace Spock.Pages
 {
@@ -23,9 +25,12 @@ namespace Spock.Pages
 	/// </summary>
 	public partial class Simulation : Page
 	{
+		public static Simulation CurrentSim;
+
 		public Simulation()
 		{
 			InitializeComponent();
+			CurrentSim = this;
 
 			foreach(UserControl c in new UserControl[] {
 				new Core.CircuitControls.BUF(),
@@ -123,10 +128,57 @@ namespace Spock.Pages
 			}
 		}
 
+		private void Workspace_MouseMove(object sender, MouseEventArgs e)
+		{
+			if (e.Source is Component component)
+			{
+				if (e.LeftButton == MouseButtonState.Pressed)
+				{
+					Point p = e.GetPosition(Workspace);
+					Canvas.SetLeft(component, p.X - component.ActualWidth / 2);
+					Canvas.SetTop(component, p.Y - component.ActualHeight / 2);
+					component.CaptureMouse();
+				}
+				else component.ReleaseMouseCapture();
+			}
+		}
+
+		private static Component? srcComponent;
+		internal static Component ConnectionComponent
+		{
+			private get => srcComponent;
+			set
+			{
+				if (srcComponent is null) srcComponent = value;
+				else
+				{
+					value.Inputs.Add(srcComponent);
+
+					Line line = new();
+					Point srcPoint = srcComponent.TransformToAncestor(App.CurrentWindow).Transform(new(0, 0));
+					Point tarPoint = value.TransformToAncestor(App.CurrentWindow).Transform(new(0, 0));
+
+					line.X1 = srcPoint.X - 60;
+					line.Y1 = srcPoint.Y - 90;
+					line.X2 = tarPoint.X - 60;
+					line.Y2 = tarPoint.Y - 90;
+
+					line.Visibility = Visibility.Visible;
+					line.Stroke = Brushes.Green;
+					line.StrokeThickness = 4;
+
+					CurrentSim.Workspace.Children.Add(line);
+
+					srcComponent = null;
+				}
+			}
+		}
+
 		private void Simplify_Click(object sender, RoutedEventArgs e)
 		{
-			Token t = Solver.Solve("ABC(DEF)GHI");
-			return;
+			Console.Write(">> ");
+			string simple = Solver.Simplify(Console.ReadLine());
+			Console.WriteLine(simple);
 		}
 	}
 }

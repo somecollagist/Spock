@@ -21,6 +21,7 @@
 				Background="{DynamicResource BackgroundDim}"
 				Drop="Workspace_Drop" 
 				DragEnter="Workspace_DragEnter" 
+				MouseMove="Workspace_MouseMove"
 				AllowDrop="True"/>
 		<Button x:Name="Simplify"
 				Content="Simplify"
@@ -31,7 +32,6 @@
 			   Height="45"
 			   VerticalContentAlignment="Center"
 			   Background="#10FFFFFF"
-			   Margin="195,385,70,20"
-			/>
+			   Margin="195,385,70,20"/>
 	</Grid>
 </Page>

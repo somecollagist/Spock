@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Spock"
         mc:Ignorable="d"
         Title="Spock" Height="486" Width="800"
+		x:Name="WindowRoot"
 		Style="{StaticResource WindowStyle}">
 	<Grid>
 		<Frame x:Name="Frame" Source="Pages/Home.xaml"/>
