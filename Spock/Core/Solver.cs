@@ -10,9 +10,9 @@ namespace Spock.Core
 	internal static class Solver
 	{
 
-		private static Regex Re_Operator = new(@"[\!\&\|\^]");
-		private static Regex Re_Identifier = new(@"([A-Z])");
-		private static Regex Re_Constant = new(@"[01]");
+		internal static Regex Re_Operator = new(@"[\!\&\|\^]");
+		internal static Regex Re_Identifier = new(@"([A-Z])");
+		internal static Regex Re_Constant = new(@"[01]");
 
 		public static string Simplify(string expr)
 		{

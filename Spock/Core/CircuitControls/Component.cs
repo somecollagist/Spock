@@ -15,15 +15,12 @@ namespace Spock.Core.CircuitControls
 	{
 		public Component()
 		{
-			this.MouseRightButtonDown += Component_MouseRightButtonDown;
+			GUID = Guid.NewGuid();
 		}
 
 		public List<Component> Inputs = new();
 		public Func<bool> Fn = () => false;     // Might be an idea to set this to be null to ensure functions do things?
-	
-		protected void Component_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
-		{
-			Simulation.ConnectionComponent = this;
-		}
+
+		public Guid GUID;
 	}
 }

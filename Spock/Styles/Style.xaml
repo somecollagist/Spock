@@ -84,6 +84,12 @@
 		<Setter Property="FontSize" Value="16"/>
 	</Style>
 
+	<Style TargetType="TextBox">
+		<Setter Property="Foreground" Value="{DynamicResource Foreground}"/>
+		<Setter Property="FontFamily" Value="Consolas"/>
+		<Setter Property="FontSize" Value="16"/>
+	</Style>
+
 	<Style TargetType="Button">
 		<Setter Property="Foreground" Value="{DynamicResource Foreground}"/>
 		<Setter Property="Background" Value="{DynamicResource BackgroundDim}"/>
