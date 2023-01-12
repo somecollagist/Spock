@@ -25,12 +25,9 @@ namespace Spock.Pages
 	/// </summary>
 	public partial class Simulation : Page
 	{
-		internal static Simulation CurrentSim;
-
 		public Simulation()
 		{
 			InitializeComponent();
-			CurrentSim = this;
 		}
 
 		internal Stream ActiveFile { get; private set; } = Stream.Null;
@@ -42,7 +39,14 @@ namespace Spock.Pages
 
 		private void Simplify_Click(object sender, RoutedEventArgs e)
 		{
-			SimpExpr.Content = Solver.Simplify(UserExpr.Text);
+			try
+			{
+				SimpExpr.Text = Solver.Simplify(UserExpr.Text).Item1;
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
 		}
 
 		private void ReturnToHomeClicked(object sender, RoutedEventArgs e)
@@ -65,46 +69,57 @@ namespace Spock.Pages
 
 		}
 
+		private void GenerateDiagramTableClicked(object sender, ExecutedRoutedEventArgs e)
+		{
+			string expr = UserExpr.Text;
+
+			GenerateTable(expr);
+		}
+
 		private struct TableLine
 		{
 			public TableLine(string expr)
 			{
 				Inputs = new();
-				Output = '\0';
-				Expr = expr;
+				Output = expr;
 			}
 
 			public List<char> Inputs;
-			public char Output;
-			public string Expr;
+			public string Output;
 		}
 
-		private void PopulateTableRow(ref TableLine[] table, int reps, ref int row, char id, char c)
+		private static void PopulateTableRow(ref TableLine[] table, int reps, ref int row, char id, char c)
 		{
 			for (int y = 0; y < reps; y++)
 			{
 				int r = row++;
 				table[r].Inputs.Add(c);
-				table[r].Expr = table[r].Expr.Replace(id, c);
+				table[r].Output = table[r].Output.Replace(id, c);
 			}
 		}
 
-		private void GenerateDiagramTableClicked(object sender, ExecutedRoutedEventArgs e)
+		private void GenerateTable(string expr)
 		{
-			string expr = UserExpr.Text;
-
-			//Generate Diagram
-
-			//Generate Table
-			List<char> inputs = new();
-			foreach(char c in expr)
+			TruthTable.Content = null;
+			try
 			{
-				if (Solver.Re_Identifier.IsMatch(c.ToString())) inputs.Add(c);
+				string simpexpr = Solver.Simplify(expr).Item1;
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				return;
+			}
+
+			List<char> inputs = new();
+			foreach (char c in expr)
+			{
+				if (Solver.Re_Identifier.IsMatch(c.ToString()) && !inputs.Contains(c)) inputs.Add(c);
 			}
 
 			TableLine[] table = new TableLine[(int)Math.Pow(2, inputs.Count) + 1];
 			for (int x = 0; x < table.Length; x++) table[x] = new(expr);
-			for(int x = 0; x < inputs.Count; x++)
+			for (int x = 0; x < inputs.Count; x++)
 			{
 				table[0].Inputs.Add(inputs[x]);
 				int reps = (int)Math.Pow(2, inputs.Count - x - 1);
@@ -116,11 +131,25 @@ namespace Spock.Pages
 				}
 			}
 
-			table[0].Output = '>';
-			for(int x = 1; x < table.GetLength(0); x++)
+			table[0].Output = expr;
+			for (int x = 1; x < table.GetLength(0); x++)
 			{
-				table[x].Output = Solver.Simplify(table[x].Expr)[0]; //Should just be one character
+				table[x].Output = Solver.Simplify(table[x].Output).Item1;
 			}
+
+			StackPanel tableV = new();
+			foreach(TableLine line in table)
+			{
+				StackPanel ln = new() { Orientation = Orientation.Horizontal };
+				foreach (char c in line.Inputs)
+				{
+					ln.Children.Add(new Label() { Content = c, Foreground = (Brush)FindResource("ForegroundDim") });
+				}
+				ln.Children.Add(new Label() { Content = line.Output });
+				tableV.Children.Add(ln);
+			}
+
+			TruthTable.Content = tableV;
 		}
 	}
 }

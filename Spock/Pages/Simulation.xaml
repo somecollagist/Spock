@@ -68,12 +68,22 @@
 				<RowDefinition Height="5*"/>
 				<RowDefinition Height="7*"/>
 			</Grid.RowDefinitions>
-			<Canvas
+			<!--<Canvas
 				Grid.Column="0"
 				Grid.Row="0"
 				Background="{DynamicResource BackgroundDim}">
-			</Canvas>
-			<Grid
+			</Canvas>-->
+			<ScrollViewer
+				x:Name="Workspace"
+				HorizontalScrollBarVisibility="Auto"
+				VerticalScrollBarVisibility="Auto"
+				Grid.Column="0"
+				Grid.Row="0"
+				Background="{DynamicResource BackgroundDim}"/>
+			<ScrollViewer
+				x:Name="TruthTable"
+				HorizontalScrollBarVisibility="Auto"
+				VerticalScrollBarVisibility="Auto"
 				Grid.Column="2"
 				Grid.Row="0"
 				Background="{DynamicResource BackgroundDim}"/>
@@ -99,8 +109,9 @@
 				 CaretBrush="{DynamicResource Foreground}"
 				 Background="{DynamicResource BackgroundDim}"
 				 Margin="20,335,20,70"/>
-		<Label	 x:Name="SimpExpr"
+		<TextBox x:Name="SimpExpr"
 				 Height="45"
+				 IsReadOnly="True"
 				 VerticalContentAlignment="Center"
 				 Background="{DynamicResource BackgroundDim}"
 				 Margin="145,385,20,20"/>
