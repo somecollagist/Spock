@@ -72,7 +72,7 @@
 	</Style>
 
 	<Style TargetType="Grid">
-		<Setter Property="Background" Value="{DynamicResource Background}"/>
+		<Setter Property="Background" Value="Transparent"/>
 	</Style>
 
 	<Style TargetType="Frame">

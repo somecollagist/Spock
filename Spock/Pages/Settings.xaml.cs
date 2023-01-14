@@ -40,9 +40,9 @@ namespace Spock.Pages
 			}
 		}
 
-		public void ReturnToHomeClicked(object sender, RoutedEventArgs e)
+		public void ReturnClicked(object sender, RoutedEventArgs e)
 		{
-			App.CurrentApp.SwitchPage(new Uri("Pages/Home.xaml", UriKind.Relative));
+			App.CurrentApp.SwitchPage(new Uri("Pages/Simulation.xaml", UriKind.Relative));
 			Properties.Settings.Default.Save();
 		}
 

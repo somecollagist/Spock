@@ -9,6 +9,6 @@
 	<SolidColorBrush x:Key="Accent" Color="#D80000"/>
 	<SolidColorBrush x:Key="AccentDim" Color="#A00000"/>
 
-	<SolidColorBrush x:Key="Border" Color="#808080"/>
-	<SolidColorBrush x:Key="Disabled" Color="#606060"/>
+	<SolidColorBrush x:Key="Border" Color="#939393"/>
+	<SolidColorBrush x:Key="Disabled" Color="#C4C4C4"/>
 </ResourceDictionary>

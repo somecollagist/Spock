@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Settings">
-	<Grid>
+	<Grid Background="{DynamicResource HatchBrush}">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="10*"/>
 			<ColumnDefinition Width="80*"/>
@@ -22,10 +22,10 @@
 			Grid.Column="0"
 			Grid.Row="0">
 			<Button
-				Content="⌂"
+				Content="&lt;"
 				Height="24" Width="24"
 				HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-				Click="ReturnToHomeClicked"/>
+				Click="ReturnClicked"/>
 		</Viewbox>
 		<Viewbox
 			Grid.Column="1"
@@ -39,7 +39,8 @@
 			Grid.Column="1"
 			Grid.Row="1"
 			HorizontalAlignment="Stretch"
-			VerticalScrollBarVisibility="Auto">
+			VerticalScrollBarVisibility="Auto"
+			Background="{DynamicResource BackgroundDim}">
 			<StackPanel>
 				<Grid>
 					<Grid.ColumnDefinitions>
@@ -69,6 +70,9 @@
 				</Grid>
 			</StackPanel>
 		</ScrollViewer>
-
+		<Label
+			Grid.Column="1" Grid.Row="2"
+			HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom"
+			Content="Boolean Logic Tester, v1.0.0"/>
 	</Grid>
 </Page>

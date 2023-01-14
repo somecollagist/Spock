@@ -16,13 +16,16 @@ using System.Windows.Shapes;
 namespace Spock.Core.CircuitControls
 {
 	/// <summary>
-	/// Interaction logic for Switch.xaml
+	/// Interaction logic for Lamp.xaml
 	/// </summary>
-	public partial class Switch : Component
+	public partial class Lamp : Component
 	{
-		public Switch()
+		public Lamp(Visual ancestor)
 		{
 			InitializeComponent();
+			Height = 30;
+			Width = 160;
+			//Container.Children.Add(DrawCircuitPathBetween(LampComponent, C1, ancestor));
 		}
 	}
 }

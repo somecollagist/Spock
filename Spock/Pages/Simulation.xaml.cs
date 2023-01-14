@@ -49,24 +49,14 @@ namespace Spock.Pages
 			}
 		}
 
-		private void ReturnToHomeClicked(object sender, RoutedEventArgs e)
+		private void SettingsClicked(object sender, ExecutedRoutedEventArgs e)
 		{
-			App.CurrentApp.SwitchPage(new Uri("Pages/Home.xaml", UriKind.Relative));
+			App.CurrentApp.SwitchPage(new Uri("Pages/Settings.xaml", UriKind.Relative));
 		}
 
-		private void NewSimulationClicked(object sender, ExecutedRoutedEventArgs e)
+		private void ClearClicked(object sender, ExecutedRoutedEventArgs e)
 		{
-
-		}
-
-		private void OpenSimulationClicked(object sender, ExecutedRoutedEventArgs e)
-		{
-
-		}
-
-		private void SaveSimulationClicked(object sender, ExecutedRoutedEventArgs e)
-		{
-
+			Workspace.Content = new Lamp(Workspace);
 		}
 
 		private void GenerateDiagramTableClicked(object sender, ExecutedRoutedEventArgs e)

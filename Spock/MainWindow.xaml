@@ -8,7 +8,7 @@
         Title="Spock" Height="486" Width="800"
 		x:Name="WindowRoot"
 		Style="{StaticResource WindowStyle}">
-	<Grid>
-		<Frame x:Name="Frame" Source="Pages/Home.xaml"/>
+	<Grid Background="{DynamicResource Background}">
+		<Frame x:Name="Frame" Source="Pages/Simulation.xaml"/>
 	</Grid>
 </Window>

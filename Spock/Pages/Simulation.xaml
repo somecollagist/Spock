@@ -10,46 +10,34 @@
       Title="Simulation">
 
 	<Page.Resources>
-		<RoutedUICommand x:Key="New"/>
-		<RoutedUICommand x:Key="Open"/>
-		<RoutedUICommand x:Key="Save"/>
+		<RoutedUICommand x:Key="Settings"/>
+		<RoutedUICommand x:Key="Clear"/>
 		<RoutedUICommand x:Key="Generate"/>
 	</Page.Resources>
 
 	<Page.CommandBindings>
-		<CommandBinding Command="{StaticResource New}" Executed="NewSimulationClicked"/>
-		<CommandBinding Command="{StaticResource Open}" Executed="OpenSimulationClicked"/>
-		<CommandBinding Command="{StaticResource Save}" Executed="SaveSimulationClicked"/>
+		<CommandBinding Command="{StaticResource Settings}" Executed="SettingsClicked"/>
+		<CommandBinding Command="{StaticResource Clear}" Executed="ClearClicked"/>
 		<CommandBinding Command="{StaticResource Generate}" Executed="GenerateDiagramTableClicked"/>
 	</Page.CommandBindings>
 
 	<Page.InputBindings>
-		<KeyBinding Key="N" Modifiers="Ctrl" Command="{StaticResource New}"/>
-		<KeyBinding Key="O" Modifiers="Ctrl" Command="{StaticResource Open}"/>
-		<KeyBinding Key="S" Modifiers="Ctrl" Command="{StaticResource Save}"/>
-		<KeyBinding Key="F5" Command="{StaticResource Generate}"/>
+		<KeyBinding Key="O" Modifiers="Ctrl" Command="{StaticResource Settings}"/>
+		<KeyBinding Key="Backspace" Modifiers="Ctrl" Command="{StaticResource Clear}"/>
+		<KeyBinding Key="F5" Modifiers="Ctrl" Command="{StaticResource Generate}"/>
 	</Page.InputBindings>
 	
 	<Grid x:Name="SimulationGrid">
 		<StackPanel
 			Orientation="Horizontal"
 			Margin="20,20,20,390">
-			<Button Height="30" Width="30"
-					FontSize="24"
-					Click="ReturnToHomeClicked">
-				⌂
+			<Button Width="100"
+					Command="{StaticResource Settings}">
+				Settings
 			</Button>
 			<Button Width="50"
-					Command="{StaticResource New}">
-				New
-			</Button>
-			<Button Width="50"
-					Command="{StaticResource Open}">
-				Open
-			</Button>
-			<Button Width="50"
-					Command="{StaticResource Save}">
-				Save
+					Command="{StaticResource Clear}">
+				Clear
 			</Button>
 			<Button Width="300"
 					Command="{StaticResource Generate}">
@@ -68,11 +56,6 @@
 				<RowDefinition Height="5*"/>
 				<RowDefinition Height="7*"/>
 			</Grid.RowDefinitions>
-			<!--<Canvas
-				Grid.Column="0"
-				Grid.Row="0"
-				Background="{DynamicResource BackgroundDim}">
-			</Canvas>-->
 			<ScrollViewer
 				x:Name="Workspace"
 				HorizontalScrollBarVisibility="Auto"
