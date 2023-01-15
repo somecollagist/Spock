@@ -1,5 +1,4 @@
 ﻿using Spock.Core;
-using Spock.Core.CircuitControls;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,11 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -56,14 +57,59 @@ namespace Spock.Pages
 
 		private void ClearClicked(object sender, ExecutedRoutedEventArgs e)
 		{
-			Workspace.Content = new Lamp(Workspace);
+			TruthTable.Content = null;
+			UserExpr.Text = null;
+			SimpExpr.Text = null;
+			PolishExpression.Content = null;
+			HumanExpression.Content = null;
+			Result.Content = null;
+			Switches.Children.Clear();
 		}
 
-		private void GenerateDiagramTableClicked(object sender, ExecutedRoutedEventArgs e)
+		private void LoadClicked(object sender, ExecutedRoutedEventArgs e)
 		{
 			string expr = UserExpr.Text;
 
 			GenerateTable(expr);
+			GenerateSwitchboard(expr);
+		}
+
+		private Lamp Circuit;
+
+		private void SwitchClicked(object sender, RoutedEventArgs e)
+		{
+			if (Circuit == null) return;
+			foreach(Input i in Solver.InputBinds[(char)((sender as ToggleButton).Content)])
+			{
+				i.State = (bool)(sender as ToggleButton).IsChecked;
+			}
+			Result.Content = Circuit.GetState();
+		}
+
+		private void GenerateSwitchboard(string expr)
+		{
+			Circuit = new Lamp()
+			{ 
+				Inputs = new List<Component>()
+				{
+					Solver.GenerateCircuit(expr)
+				}
+			};
+			PolishExpression.Content = expr;
+			HumanExpression.Content = Solver.GenerateSubExpr(Circuit);
+			Switches.Children.Clear();
+			
+			foreach(KeyValuePair<char, List<Input>> kvp in Solver.InputBinds)
+			{
+				foreach (Input i in kvp.Value) i.State = false;
+
+				ToggleButton btn = new ToggleButton();
+				btn.Content = kvp.Key;
+				btn.Click += SwitchClicked;
+				Switches.Children.Add(btn);
+			}
+
+			Result.Content = Circuit.GetState();
 		}
 
 		private struct TableLine

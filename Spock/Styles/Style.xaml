@@ -51,10 +51,6 @@
 								x:Name="MinimiseButton" Content="-"
 								Style="{DynamicResource WindowButton}"
 								Click="MinimiseClicked"/>
-							<!--<Button
-								x:Name="MaxmimiseButton" Content="□"
-								Style="{DynamicResource WindowButton}"
-								Click="MaximiseClicked"/>-->
 							<Button
 								x:Name="CloseButton" Content="×"
 								Style="{DynamicResource WindowButton}"
@@ -176,6 +172,35 @@
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
+	</Style>
+
+	<Style TargetType="ToggleButton">
+		<Setter Property="Background" Value="{DynamicResource BackgroundDim}"/>
+		<Setter Property="FontFamily" Value="Consolas"/>
+		<Setter Property="Foreground" Value="{DynamicResource Foreground}"/>
+		<Setter Property="BorderBrush" Value="{DynamicResource Border}"/>
+		<Setter Property="BorderThickness" Value="2"/>
+		<Setter Property="Margin" Value="5"/>
+		<Setter Property="Width" Value="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="ToggleButton">
+					<Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="2" Background="{TemplateBinding Background}">
+						<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Style.Triggers>
+			<Trigger Property="IsChecked" Value="True">
+				<Setter Property="Background" Value="#FF00FF00"/>
+				<Setter Property="Foreground" Value="#FF000000"/>
+			</Trigger>
+			<Trigger Property="IsMouseOver" Value="True">
+				<Setter Property="Background" Value="{DynamicResource Accent}"/>
+				<Setter Property="Foreground" Value="{DynamicResource Foreground}"/>
+			</Trigger>
+		</Style.Triggers>
 	</Style>
 
 	<Style TargetType="RadioButton">

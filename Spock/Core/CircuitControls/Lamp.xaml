@@ -5,7 +5,7 @@
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 xmlns:local="clr-namespace:Spock.Core.CircuitControls"
 			 mc:Ignorable="d" 
-			 d:DesignHeight="30" d:DesignWidth="160">
+			 d:DesignHeight="30" d:DesignWidth="30">
 	<Grid x:Name="Container" Background="Transparent">
 		<Path x:Name="LampComponent"
 			  Data="M 15,5 A 10,10,90,0,1,25,15 A 10,10,90,0,1,15,25 A 10,10,90,0,1,5,15 A 10,10,90,0,1,15,5
@@ -15,10 +15,5 @@
 			  Height="30" Width="30"
 			  HorizontalAlignment="Right"
 			  VerticalAlignment="Center"/>
-		<local:ComponentContainer
-			x:Name="C1"
-			Height="30" Width="100"
-			HorizontalAlignment="Left"
-			VerticalAlignment="Center"/>
 	</Grid>
 </local:Component>

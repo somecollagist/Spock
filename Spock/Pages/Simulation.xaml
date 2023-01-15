@@ -12,19 +12,19 @@
 	<Page.Resources>
 		<RoutedUICommand x:Key="Settings"/>
 		<RoutedUICommand x:Key="Clear"/>
-		<RoutedUICommand x:Key="Generate"/>
+		<RoutedUICommand x:Key="Load"/>
 	</Page.Resources>
 
 	<Page.CommandBindings>
 		<CommandBinding Command="{StaticResource Settings}" Executed="SettingsClicked"/>
 		<CommandBinding Command="{StaticResource Clear}" Executed="ClearClicked"/>
-		<CommandBinding Command="{StaticResource Generate}" Executed="GenerateDiagramTableClicked"/>
+		<CommandBinding Command="{StaticResource Load}" Executed="LoadClicked"/>
 	</Page.CommandBindings>
 
 	<Page.InputBindings>
 		<KeyBinding Key="O" Modifiers="Ctrl" Command="{StaticResource Settings}"/>
 		<KeyBinding Key="Backspace" Modifiers="Ctrl" Command="{StaticResource Clear}"/>
-		<KeyBinding Key="F5" Modifiers="Ctrl" Command="{StaticResource Generate}"/>
+		<KeyBinding Key="F5" Modifiers="Ctrl" Command="{StaticResource Load}"/>
 	</Page.InputBindings>
 	
 	<Grid x:Name="SimulationGrid">
@@ -35,13 +35,13 @@
 					Command="{StaticResource Settings}">
 				Settings
 			</Button>
-			<Button Width="50"
+			<Button Width="70"
 					Command="{StaticResource Clear}">
 				Clear
 			</Button>
-			<Button Width="300"
-					Command="{StaticResource Generate}">
-				Generate Diagram and Truth Table
+			<Button Width="200"
+					Command="{StaticResource Load}">
+				Load Current Circuit
 			</Button>
 		</StackPanel>
 		<Grid
@@ -56,13 +56,38 @@
 				<RowDefinition Height="5*"/>
 				<RowDefinition Height="7*"/>
 			</Grid.RowDefinitions>
-			<ScrollViewer
-				x:Name="Workspace"
-				HorizontalScrollBarVisibility="Auto"
-				VerticalScrollBarVisibility="Auto"
-				Grid.Column="0"
-				Grid.Row="0"
-				Background="{DynamicResource BackgroundDim}"/>
+			<Grid
+				Background="{DynamicResource BackgroundDim}">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="*"/>
+					<RowDefinition Height="*"/>
+					<RowDefinition Height="2*"/>
+					<RowDefinition Height="*"/>
+				</Grid.RowDefinitions>
+				<Label
+					x:Name="PolishExpression"
+					HorizontalContentAlignment="Center"
+					VerticalContentAlignment="Center"
+					Grid.Row="0"
+					Foreground="{DynamicResource ForegroundDim}"
+					FontSize="24"/>
+				<Label
+					x:Name="HumanExpression"
+					HorizontalContentAlignment="Center"
+					VerticalContentAlignment="Center"
+					Grid.Row="1"
+					Foreground="{DynamicResource ForegroundDim}"
+					FontSize="24"/>
+				<Label
+					x:Name="Result"
+					HorizontalContentAlignment="Center"
+					VerticalContentAlignment="Center"
+					Grid.Row="2"
+					FontSize="48"/>
+				<ScrollViewer Grid.Row="3" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+					<StackPanel x:Name="Switches" Orientation="Horizontal"/>
+				</ScrollViewer>
+			</Grid>
 			<ScrollViewer
 				x:Name="TruthTable"
 				HorizontalScrollBarVisibility="Auto"
@@ -74,7 +99,7 @@
 				Grid.Column="0"
 				Grid.Row="2"
 				FontSize="8"
-				Content="Generated Diagram"/>
+				Content="Switchboard"/>
 			<Label
 				Grid.Column="2"
 				Grid.Row="2"

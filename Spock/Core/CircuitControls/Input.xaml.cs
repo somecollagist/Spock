@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Spock.Core.CircuitControls
 {
 	/// <summary>
-	/// Interaction logic for Lamp.xaml
+	/// Interaction logic for Input.xaml
 	/// </summary>
-	public partial class Lamp : Component
+	public partial class Input : Component
 	{
-		public Lamp(Visual ancestor)
+		public Input()
 		{
 			InitializeComponent();
 		}

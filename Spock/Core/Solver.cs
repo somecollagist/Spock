@@ -13,6 +13,76 @@ namespace Spock.Core
 		internal static Regex Re_Identifier = new(@"([A-Z])");
 		internal static Regex Re_Constant = new(@"[01]");
 
+		public static Lamp Circuit = new();
+		public static Dictionary<char, List<Input>> InputBinds = new();
+
+		public static Component GenerateCircuit(string expr)
+		{
+			int _ = 0;
+			return GenerateCircuit(expr, ref _);
+		}
+
+		public static Component GenerateCircuit(string expr, ref int offset)
+		{
+			char c = expr[offset++];
+			if (Re_Identifier.IsMatch(c.ToString()))
+			{
+				Input i = new Input() { ComponentContent = c.ToString() };
+				if (!InputBinds.ContainsKey(c))
+					InputBinds.Add(c, new());
+				InputBinds[c].Add(i);
+				return i;
+			}
+			if (c == '0')
+				return new ConstantZero();
+			if (c == '1')
+				return new ConstantOne();
+
+			Component gate;
+			switch(c)
+			{
+				case '!':
+					gate = new NOT();
+					goto unaryoperator;
+				case '&':
+					gate = new AND();
+					goto diadicoperator;
+				case '|':
+					gate = new OR();
+					goto diadicoperator;
+				case '^':
+					gate = new XOR();
+					goto diadicoperator;
+				default:
+					throw new Exception("Malformed Boolean Expression");
+			}
+
+		unaryoperator:
+			gate.Inputs.Add(GenerateCircuit(expr, ref offset));
+			goto end;
+
+		diadicoperator:
+			gate.Inputs.Add(GenerateCircuit(expr, ref offset));
+			gate.Inputs.Add(GenerateCircuit(expr, ref offset));
+			goto end;
+
+		end:
+			return gate;
+		}
+
+		public static string GenerateSubExpr(this Component c)
+		{
+			string ret = "";
+			if (c.Inputs.Count > 0) ret += c.Inputs[0].GenerateSubExpr();
+			ret += c.ComponentContent;
+			if (c.Inputs.Count > 1) ret += c.Inputs[1].GenerateSubExpr();
+
+			if (ret[^1] == '!') ret = $"!{ret[..^1]}";
+			if (c.Inputs.Count > 1) ret = $"({ret})";
+
+			return ret;
+		}
+
 		public static (string, int) Simplify(string expr) => Simplify(expr, '\0');
 
 		public static (string, int) Simplify(string expr, char context)

@@ -1,6 +1,7 @@
 ﻿using Spock.Pages;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,35 +25,17 @@ namespace Spock.Core.CircuitControls
 
 		public Guid GUID;
 
-		protected static Path DrawCircuitPathBetween(UIElement src, UIElement dst, Visual ancestor)
-		{
-			GeneralTransform srct = src.TransformToAncestor(ancestor);
-			GeneralTransform dstt = dst.TransformToAncestor(ancestor);
+		public string GateContent;
 
-			return new Path
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		private void onChange(string propertyName)
+		{
+			if(PropertyChanged != null)
 			{
-				Data = new CombinedGeometry
-				{
-					Geometry1 = new CombinedGeometry
-					{
-						Geometry1 = new LineGeometry
-						{
-							StartPoint = srct.Transform(new(0,0)),
-							EndPoint = srct.Transform(new(-15,0))
-						},
-						Geometry2 = new LineGeometry
-						{
-							StartPoint = srct.Transform(new(-15,0)),
-							EndPoint = dstt.Transform(new(15, 0))
-						}
-					},
-					Geometry2 = new LineGeometry
-					{
-						StartPoint = dstt.Transform(new(15,0)),
-						EndPoint = dstt.Transform(new(0,0))
-					}
-				},
-			};
+				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
+		
 	}
 }
