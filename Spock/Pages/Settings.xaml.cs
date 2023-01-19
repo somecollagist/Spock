@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Spock.Pages
 {
@@ -24,6 +13,7 @@ namespace Spock.Pages
 		{
 			InitializeComponent();
 
+			// Switch theme according to whatever's loaded in the app manifest
 			switch(App.CurrentApp.CurrentStyle)
 			{
 				case App.Styles.System:
@@ -40,29 +30,26 @@ namespace Spock.Pages
 			}
 		}
 
+		/// <summary>
+		/// Return to simulation page.
+		/// </summary>
 		public void ReturnClicked(object sender, RoutedEventArgs e)
 		{
 			App.CurrentApp.SwitchPage(new Uri("Pages/Simulation.xaml", UriKind.Relative));
-			Properties.Settings.Default.Save();
+			Properties.Settings.Default.Save(); // Save the user's settings to the manifest
 		}
 
+		/// <summary>
+		/// Switches the user's theme
+		/// </summary>
 		public void ThemeClicked(object sender, RoutedEventArgs e)
 		{
-			App.Styles style;
-			switch((string)(((RadioButton)sender).Content))
+			Spock.App.Styles style = (string)((RadioButton)sender).Content switch
 			{
-				case "Light":
-					style = App.Styles.Light;
-					break;
-
-				case "Dark":
-					style = App.Styles.Dark;
-					break;
-
-				default:
-					style = App.Styles.System;
-					break;
-			}
+				"Light" => App.Styles.Light,
+				"Dark" => App.Styles.Dark,
+				_ => App.Styles.System,
+			};
 			App.CurrentApp.SetStyle(style);
 			Properties.Settings.Default.Theme = (short)style;
 		}

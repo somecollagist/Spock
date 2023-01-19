@@ -2,27 +2,33 @@
 					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 					xmlns:local="clr-namespace:Spock"
-					xmlns:ccs="clr-namespace:Spock.Core.CircuitControls"
 					x:Class="Spock.Style"
 					x:Name="ThemeDictionary">
 	<ResourceDictionary.MergedDictionaries>
-		<ResourceDictionary Source="Dark.xaml"/>
+		<ResourceDictionary Source="Dark.xaml"/> <!-- Default theme in editor because dark mode FTW -->
 	</ResourceDictionary.MergedDictionaries>
 
-	<VisualBrush x:Key="HatchBrush" TileMode="Tile"
-                 Viewport="0,0,5,5" ViewportUnits="Absolute"
-                 Viewbox="0,0,5,5" ViewboxUnits="Absolute">
+	<VisualBrush
+		x:Key="HatchBrush"
+		TileMode="Tile"
+		Viewport="0,0,5,5" ViewportUnits="Absolute"
+		Viewbox="0,0,5,5" ViewboxUnits="Absolute">
 		<VisualBrush.Visual>
-			<Grid Background="Transparent">
-				<Path Data="M 0 15 L 15 0"
-				  Stroke="{DynamicResource BackgroundDim}"/>
-				<Path Data="M 0 0 L 15 15"
-				  Stroke="{DynamicResource BackgroundDim}"/>
+			<Grid
+				Background="Transparent">
+				<Path
+					Data="M 0 15 L 15 0"
+					Stroke="{DynamicResource BackgroundDim}"/>
+				<Path
+					Data="M 0 0 L 15 15"
+					Stroke="{DynamicResource BackgroundDim}"/>
 			</Grid>
 		</VisualBrush.Visual>
 	</VisualBrush>
 
-	<Style x:Key="WindowStyle" TargetType="Window">
+	<Style
+		x:Key="WindowStyle"
+		TargetType="Window">
 		<Setter Property="WindowStyle" Value="None"/>
 		<Setter Property="AllowsTransparency" Value="True"/>
 		<Setter Property="ResizeMode" Value="CanMinimize"/>
@@ -34,7 +40,8 @@
 		</Setter>
 		<Setter Property="Template">
 			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type Window}">
+				<ControlTemplate
+					TargetType="{x:Type Window}">
 					<Grid
 						Background="{DynamicResource BackgroundDim}"
 						VerticalAlignment="Top">
@@ -42,24 +49,31 @@
 							<RowDefinition Height="36"/>
 							<RowDefinition Height="450"/>
 						</Grid.RowDefinitions>
+						<Label
+							Content="Spock"
+							HorizontalAlignment="Left"
+							VerticalAlignment="Center"/>
 						<StackPanel
-							WindowChrome.IsHitTestVisibleInChrome="True"
-							Grid.Row="0" Height="36"
+							Height="36"
+							Grid.Row="0"
 							Orientation="Horizontal"
-							HorizontalAlignment="Right" VerticalAlignment="Center">
+							HorizontalAlignment="Right" VerticalAlignment="Center"
+							WindowChrome.IsHitTestVisibleInChrome="True">
 							<Button
-								x:Name="MinimiseButton" Content="-"
+								x:Name="MinimiseButton"
+								Content="-"
 								Style="{DynamicResource WindowButton}"
 								Click="MinimiseClicked"/>
 							<Button
-								x:Name="CloseButton" Content="×"
+								x:Name="CloseButton"
+								Content="×"
 								Style="{DynamicResource WindowButton}"
 								Click="CloseClicked"/>
 						</StackPanel>
 						<ContentPresenter
-							Width="{TemplateBinding Width}"
-							Grid.Row="1" Height="450"
 							Content="{TemplateBinding Content}"
+							Height="450" Width="{TemplateBinding Width}"
+							Grid.Row="1"
 							ContentTemplate="{TemplateBinding ContentTemplate}"/>
 					</Grid>
 				</ControlTemplate>
@@ -83,14 +97,14 @@
 
 	<Style TargetType="TextBox">
 		<Setter Property="Foreground" Value="{DynamicResource Foreground}"/>
+		<Setter Property="BorderBrush" Value="Transparent"/>
 		<Setter Property="FontFamily" Value="Consolas"/>
 		<Setter Property="FontSize" Value="16"/>
-		<Setter Property="BorderBrush" Value="Transparent"/>
 	</Style>
 
 	<Style TargetType="Button">
-		<Setter Property="Foreground" Value="{DynamicResource Foreground}"/>
 		<Setter Property="Background" Value="{DynamicResource BackgroundDim}"/>
+		<Setter Property="Foreground" Value="{DynamicResource Foreground}"/>
 		<Setter Property="FontFamily" Value="Consolas"/>
 		<Setter Property="FontSize" Value="16"/>
 		<Setter Property="BorderThickness" Value="1"/>
@@ -102,12 +116,13 @@
 					<Grid>
 						<Border
 							x:Name="border"
+							Background="{TemplateBinding Background}"
 							BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
-							Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+							SnapsToDevicePixels="true">
 							<TextBlock
 								x:Name="ContentPresenter"
-								Foreground="{TemplateBinding Foreground}"
 								Text="{TemplateBinding Content}"
+								Foreground="{TemplateBinding Foreground}"
 								HorizontalAlignment="Center" VerticalAlignment="Center"/>
 						</Border>
 					</Grid>
@@ -135,8 +150,8 @@
 	</Style>
 
 	<Style TargetType="Button" x:Key="WindowButton">
-		<Setter Property="Foreground" Value="{DynamicResource Foreground}"/>
 		<Setter Property="Background" Value="{DynamicResource BackgroundDim}"/>
+		<Setter Property="Foreground" Value="{DynamicResource Foreground}"/>
 		<Setter Property="FontFamily" Value="Consolas"/>
 		<Setter Property="FontSize" Value="20"/>
 		<Setter Property="BorderThickness" Value="0"/>
@@ -148,12 +163,13 @@
 						Width="36">
 						<Border
 							x:Name="border"
+							Background="{TemplateBinding Background}"
 							BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
-							Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+							SnapsToDevicePixels="true">
 							<TextBlock
 								x:Name="ContentPresenter"
-								Foreground="{TemplateBinding Foreground}"
 								Text="{TemplateBinding Content}"
+								Foreground="{TemplateBinding Foreground}"
 								HorizontalAlignment="Center" VerticalAlignment="Center"/>
 						</Border>
 					</Grid>
@@ -176,48 +192,51 @@
 
 	<Style TargetType="ToggleButton">
 		<Setter Property="Background" Value="{DynamicResource BackgroundDim}"/>
-		<Setter Property="FontFamily" Value="Consolas"/>
 		<Setter Property="Foreground" Value="{DynamicResource Foreground}"/>
 		<Setter Property="BorderBrush" Value="{DynamicResource Border}"/>
 		<Setter Property="BorderThickness" Value="2"/>
-		<Setter Property="Margin" Value="5"/>
+		<Setter Property="FontFamily" Value="Consolas"/>
 		<Setter Property="Width" Value="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"/>
+		<Setter Property="Margin" Value="5"/>
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="ToggleButton">
-					<Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="2" Background="{TemplateBinding Background}">
-						<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+					<Border
+						Background="{TemplateBinding Background}"
+						BorderBrush="{TemplateBinding BorderBrush}"
+						BorderThickness="2">
+						<ContentPresenter
+							HorizontalAlignment="Center" VerticalAlignment="Center"/>
 					</Border>
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
 		<Style.Triggers>
 			<Trigger Property="IsChecked" Value="True">
-				<Setter Property="Background" Value="#FF00FF00"/>
-				<Setter Property="Foreground" Value="#FF000000"/>
+				<Setter Property="Background" Value="{DynamicResource Accent}"/>
+				<Setter Property="Foreground" Value="{DynamicResource Border}"/>
 			</Trigger>
 			<Trigger Property="IsMouseOver" Value="True">
-				<Setter Property="Background" Value="{DynamicResource Accent}"/>
-				<Setter Property="Foreground" Value="{DynamicResource Foreground}"/>
+				<Setter Property="Background" Value="{DynamicResource AccentDim}"/>
 			</Trigger>
 		</Style.Triggers>
 	</Style>
 
 	<Style TargetType="RadioButton">
-		<Setter Property="Foreground" Value="{DynamicResource Foreground}"/>
 		<Setter Property="Background" Value="{DynamicResource BackgroundDim}"/>
+		<Setter Property="Foreground" Value="{DynamicResource Foreground}"/>
+		<Setter Property="BorderThickness" Value="1"/>
 		<Setter Property="FontFamily" Value="Consolas"/>
 		<Setter Property="FontSize" Value="16"/>
-		<Setter Property="BorderThickness" Value="1"/>
 		<Setter Property="Margin" Value="2.5" />
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="RadioButton">
-					<BulletDecorator Background="Transparent">
+					<BulletDecorator
+						Background="Transparent">
 						<BulletDecorator.Bullet>
 							<Grid
-								Height="12"
-								Width="12">
+								Height="12" Width="12">
 								<Ellipse
 									x:Name="EllipseInterior"
 									Stroke="{DynamicResource Border}"
@@ -288,9 +307,9 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="Thumb">
 					<Border
-						CornerRadius="10"
 						Background="{DynamicResource BackgroundDim}"
-						BorderBrush="{DynamicResource BackgroundDim}"/>
+						BorderBrush="{DynamicResource BackgroundDim}"
+						CornerRadius="10"/>
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
@@ -300,14 +319,14 @@
 		<Grid>
 			<Grid.RowDefinitions>
 				<RowDefinition Height="18"/>
-				<RowDefinition/>
+				<RowDefinition Height="*"/>
 				<RowDefinition Height="18"/>
 			</Grid.RowDefinitions>
 			<RepeatButton
-				Grid.Row="0"
-				Style="{DynamicResource ScrollBarEndButton}"
-				Height="18"
 				Content="▲"
+				Style="{DynamicResource ScrollBarEndButton}"
+				Grid.Row="0"
+				Height="18"
 				Command="ScrollBar.LineUpCommand"/>
 			<Track
 				Grid.Row="1"
@@ -328,10 +347,10 @@
 				</Track.IncreaseRepeatButton>
 			</Track>
 			<RepeatButton
-				Grid.Row="2"
-				Style="{DynamicResource ScrollBarEndButton}"
-				Height="18"
 				Content="▼"
+				Style="{DynamicResource ScrollBarEndButton}"
+				Grid.Row="2"
+				Height="18"
 				Command="ScrollBar.LineDownCommand"/>
 		</Grid>
 	</ControlTemplate>
@@ -344,10 +363,10 @@
 				<ColumnDefinition Width="18"/>
 			</Grid.ColumnDefinitions>
 			<RepeatButton
-				Grid.Column="0"
-				Style="{DynamicResource ScrollBarEndButton}"
-				Height="18"
 				Content="◀"
+				Style="{DynamicResource ScrollBarEndButton}"
+				Grid.Column="0"
+				Height="18"
 				Command="ScrollBar.LineLeftCommand"/>
 			<Track
 				Grid.Column="1"
@@ -368,10 +387,10 @@
 				</Track.IncreaseRepeatButton>
 			</Track>
 			<RepeatButton
-				Grid.Column="2"
-				Style="{DynamicResource ScrollBarEndButton}"
-				Height="18"
 				Content="▶"
+				Style="{DynamicResource ScrollBarEndButton}"
+				Grid.Column="2"
+				Height="18"
 				Command="ScrollBar.LineRightCommand"/>
 		</Grid>
 	</ControlTemplate>
