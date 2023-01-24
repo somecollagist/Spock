@@ -8,11 +8,22 @@
     <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <EnforceCodeStyleInBuild>False</EnforceCodeStyleInBuild>
+    <Company>Kumomi Systems</Company>
+    <Description>Boolean Logic Tool (Computer Science NEA)</Description>
+    <PackageIcon>spocklogo.png</PackageIcon>
+    <RepositoryUrl>https://www.github.com/somecollagist/Spock</RepositoryUrl>
+    <PackageLicenseFile>C:\Users\johan\source\repos\Spock\LICENSE.txt</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <ApplicationIcon>spocklogo.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <Page Remove="Styles\Dark.xaml" />
     <Page Remove="Styles\Light.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="spocklogo.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,6 +47,10 @@
     <None Update="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="spocklogo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
 

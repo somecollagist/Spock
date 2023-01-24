@@ -7,7 +7,7 @@ namespace Spock.Core
 	internal static class Solver
 	{
 		/// <summary>
-		/// Regex to filter for boolean operators (unary and diadic).
+		/// Regex to filter for boolean operators (unary and dyadic).
 		/// </summary>
 		internal static Regex Re_Operator = new(@"[\!\&\|\^]");
 		/// <summary>
@@ -93,7 +93,7 @@ namespace Spock.Core
 		// For gates with two inputs.
 		diadicoperator:
 			gate.Inputs.Add(GenerateCircuit(expr, ref offset));
-			gate.Inputs.Add(GenerateCircuit(expr, ref offset));
+			gate.Inputs.Add(GenerateCircuit(expr, ref offset));	// Take advantage of side effects
 			goto end;
 
 		end:
